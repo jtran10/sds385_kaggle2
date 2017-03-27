@@ -23,10 +23,14 @@ set.seed(myseed)
 
 # select data set to use
 modelTrainData = train9698Data
+modelTestData = test9698Data
 
 ## create k-fold lists (test indices)
 kFolds = 10
+set.seed(myseed)
 testFoldInd = createFolds(modelTrainData$y, kFolds, returnTrain = FALSE)
+set.seed(myseed)
+trainFoldInd = createFolds(modelTrainData$y, kFolds, returnTrain = TRUE)
 
 ## input initial constant tuning params and bounds
 init_nrounds = 50000L # basically infinite
@@ -40,12 +44,22 @@ bounds = list(max_depth = c(1L, 20L),
               )
 
 ## misc inputs to xgboost
-init_early = 100L
+init_early = 3L
 
 ## create random parameter search grid
 randLen = 4 # numer of search points in random grid
 source('rand_search_grid.R')
+set.seed(myseed)
 random_grid = create_random_grid(randLen, bounds)
+
+## manipulate data to be usable for xgboost
+xgbTrainData = model.matrix(y ~ ., data = modelTrainData)[,-1]
+xgbTestData = model.matrix(~ ., data = modelTestData)[,-1]
+train.y = ifelse(modelTrainData$y == "y", 1, 0)
+dtrain = xgb.DMatrix(xgbTrainData, label = train.y)
+
+##
+
 
 
 
