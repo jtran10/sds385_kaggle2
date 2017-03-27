@@ -37,8 +37,8 @@ rm(b9698)
 rm(testb9698)
 rm(index)
 rm(this.dir)
-
-
+rm(trainData)
+rm(testData)
 
 
 
