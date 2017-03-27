@@ -1,7 +1,7 @@
 ## function to create return random search grid
 create_random_grid <- function(randLen, bounds ){
-random_grid = data.frame(nrounds = matrix(init_nrounds,randLen),
-  eta = matrix(init_eta,randLen),
+  set.seed(myseed)
+random_grid = data.frame(
   max_depth = sample(bounds$max_depth[1]:bounds$max_depth[2], 
                      replace = TRUE, size = randLen),
   gamma = runif(randLen, min = bounds$gamma[1], max = bounds$gamma[2]),
