@@ -50,7 +50,8 @@ bounds = list(max_depth = c(1L, 20L),
 
 ## misc inputs to xgboost
 init_early = 3L
-nthread = detectCores() - 1
+nthread = detectCores()
+
 
 ## create random parameter search grid
 randLen = 4L # number of search points in random grid
@@ -69,6 +70,7 @@ source('post_model_feature_eng.R')
 source('get_xgb_testAUC.R')
 randGridAUC = matrix(NA,randLen,1L)
 for (i in 1:randLen){
+  print(c("randIter",i))
   randGridAUC[i,1] = get_xgb_testAUC(random_grid$max_depth[i],
                                      random_grid$gamma[i],
                                      random_grid$colsample_bytree[i],
@@ -95,6 +97,7 @@ bayes_result = BayesianOptimization(
 )
 
 
+save.image(file="test.RData")
 
 
 

@@ -22,6 +22,7 @@ xgbCV = xgb.cv(params = param,
                maximize = TRUE,
                print_every_n = 1,
                nthread = nthread,
+               verbose = FALSE,
                set.seed(myseed)
 )
 
