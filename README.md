@@ -1,6 +1,4 @@
-# sds385_kaggle2
-
-## Prediction modeling project for SDS385. 
+### Loan default prediction modeling project for SDS385. 
 
 The goal is to predict if a person will default or not. The data set is moderately imbalanced (only ~6% default). The metric score is given as AUC-ROC. 
 
