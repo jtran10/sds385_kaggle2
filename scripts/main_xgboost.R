@@ -184,6 +184,6 @@ write.csv(kaggle_pred_df , file = "final.csv" , row.names = FALSE)
 ## final model
 print("final model parameters")
 print(cbind(best_bayes_eta_grid[best_model_index,-7], 
-      nrounds=etaGridAUC$nrounds[best_model_index]),
-      CVAUC = etaGridAUC$Score[best_model_index])
+      nrounds=etaGridAUC$nrounds[best_model_index],
+      CVAUC = etaGridAUC$Score[best_model_index]))
 
